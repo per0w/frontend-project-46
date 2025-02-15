@@ -12,7 +12,7 @@ const parse = (fileName) => {
     }
 
     default: {
-      return null;
+      return {};
     }
   }
 };

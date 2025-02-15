@@ -12,6 +12,9 @@
   "dependencies": {
     "commander": "^13.1.0"
   },
+  "bin": {
+    "gendiff": "bin/index.js"
+  },
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",
     "@eslint/js": "^9.20.0",
@@ -21,6 +24,7 @@
     "eslint-plugin-import": "^2.31.0",
     "globals": "^15.14.0",
     "jest": "^29.7.0",
-    "jest-cli": "^29.7.0"
+    "jest-cli": "^29.7.0",
+    "nodemon": "^3.1.9"
   }
 }
