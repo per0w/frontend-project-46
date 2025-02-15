@@ -1,15 +1,8 @@
-import { program } from 'commander';
+import { CHANGING_TYPES } from './constants.js';
 
-import parse from './parse.js';
+export const getFileExtension = (file) => file.split('.')?.at(1)?.toLocaleLowerCase();
 
-const CHANGING_TYPES = {
-  CHANGED: 'changed',
-  UNGANGED: 'unchanged',
-  DELETED: 'deleted',
-  ADDED: 'added',
-};
-
-const getMarkedDiff = (file1, file2) => {
+export const getMarkedDiff = (file1, file2) => {
   const result = {};
 
   Object.entries(file1).forEach(([file1Key, file1Value]) => {
@@ -35,7 +28,7 @@ const getMarkedDiff = (file1, file2) => {
   );
 };
 
-const displayDiffLikeObject = (merkedDiff, file1, file2) => {
+export const displayDiffLikeObject = (merkedDiff, file1, file2) => {
   const result = {};
 
   Object.entries(merkedDiff).forEach(([key, type]) => {
@@ -63,29 +56,3 @@ const displayDiffLikeObject = (merkedDiff, file1, file2) => {
 
   return JSON.stringify(result, null, 2).replace(/("|,)/g, '');
 };
-
-const command = (filepath1, filepath2, { format } = {}) => {
-  const file1 = parse(filepath1);
-
-  const file2 = parse(filepath2);
-
-  const merkedDiff = getMarkedDiff(file1, file2);
-
-  let result = null;
-
-  switch (format) {
-    default:
-      result = displayDiffLikeObject(merkedDiff, file1, file2);
-      break;
-  }
-
-  console.log(result);
-};
-
-program
-  .description('Compares two configuration files and shows a difference.')
-  .version('0.0.1')
-  .arguments('<filepath1>, <filepath2>')
-  .option('-f, --format [type]', 'output format')
-  .action(command)
-  .parse(process.argv);

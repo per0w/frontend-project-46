@@ -1,9 +1,9 @@
 import path from 'path';
 import { readFileSync } from 'fs';
 
-import getFileExtension from './utils.js';
+import { getFileExtension } from './utils.js';
 
-const parse = (fileName) => {
+export const parse = (fileName) => {
   const extension = getFileExtension(fileName);
 
   switch (extension) {
@@ -16,5 +16,3 @@ const parse = (fileName) => {
     }
   }
 };
-
-export default parse;

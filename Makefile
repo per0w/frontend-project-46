@@ -5,6 +5,8 @@ gendiff:
 publish:
 	npm publish --dry-run
 lint:
-	npx eslint .
-dev:
-	npx nodemon gendiff.js file1.json file2.json
+	npx eslint ./src
+test:
+	npm test
+test-coverage:
+	npm test -- --coverage --coverageProvider=v8
