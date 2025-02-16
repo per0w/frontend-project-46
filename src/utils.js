@@ -1,6 +1,7 @@
+import path from 'path';
 import { CHANGING_TYPES } from './constants.js';
 
-export const getFileExtension = (file) => file.split('.')?.at(1)?.toLocaleLowerCase();
+export const getFileExtension = (file) => path.extname(file);
 
 export const getMarkedDiff = (file1, file2) => {
   const result = {};

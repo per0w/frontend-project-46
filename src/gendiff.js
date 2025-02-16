@@ -1,6 +1,6 @@
 import { program } from 'commander';
 
-import { parse } from './parse.js';
+import { parse } from './parsers.js';
 import { displayDiffLikeObject, getMarkedDiff } from './utils.js';
 
 export const command = (filepath1, filepath2, { format } = {}) => {

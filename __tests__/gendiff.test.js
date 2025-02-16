@@ -11,10 +11,39 @@ const __dirname = dirname(__filename);
 const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
 
 describe('command test cases', () => {
-  it('Should display diff by default', () => {
+  it('Should display diff by default with json', () => {
     global.console.log = jest.fn();
 
     command(getFixturePath('file1.json'), getFixturePath('file2.json'));
+
+    expect(console.log).toMatchInlineSnapshot(`
+[MockFunction] {
+  "calls": [
+    [
+      "{
+  - follow: false
+    host: hexlet.io
+  - proxy: 123.234.53.22
+  - timeout: 50
+  + timeout: 20
+  + verbose: true
+}",
+    ],
+  ],
+  "results": [
+    {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`);
+  });
+
+  it('Should display diff with yml', () => {
+    global.console.log = jest.fn();
+
+    command(getFixturePath('file1.yml'), getFixturePath('file2.yaml'));
 
     expect(console.log).toMatchInlineSnapshot(`
 [MockFunction] {
